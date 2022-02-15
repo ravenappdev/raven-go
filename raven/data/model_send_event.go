@@ -7,10 +7,10 @@
  * Contact: api@ravenapp.dev
  */
 
-package raven
+package data
 
-type Response struct {
-	Sucess bool   `json:"success,omitempty"`
-	Id     string `json:"id,omitempty"`
-	Error  string `json:"error,omitempty"`
+type SendEvent struct {
+	Event string `json:"event"`
+	User  *User  `json:"user"`
+	Data  *Data  `json:"data,omitempty"`
 }

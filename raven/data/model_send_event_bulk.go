@@ -7,6 +7,14 @@
  * Contact: api@ravenapp.dev
  */
 
-package raven
+package data
 
-type Data map[string]interface{}
+type BatchItem struct {
+	User *User `json:"user"`
+	Data *Data `json:"data,omitempty"`
+}
+
+type SendEventBulk struct {
+	Event string      `json:"event"`
+	Batch []BatchItem `json:"batch,omitempty"`
+}

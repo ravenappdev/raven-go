@@ -7,7 +7,7 @@
  * Contact: api@ravenapp.dev
  */
 
-package raven
+package data
 
 type User struct {
 	UserId              string   `json:"user_id,omitempty"`

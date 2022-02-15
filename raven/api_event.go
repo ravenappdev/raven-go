@@ -16,6 +16,8 @@ import (
 	"io/ioutil"
 	"net/url"
 	"strings"
+
+	"github.com/ravenappdev/raven-go/raven/data"
 )
 
 // Linger please
@@ -34,13 +36,13 @@ This API will send the event in bulk to the clients specified
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event SendEventBulk) (Response, error) {
+func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event data.SendEventBulk) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue Response
+		localVarReturnValue data.Response
 	)
 
 	// create path and map variables
@@ -124,13 +126,13 @@ This API will send the event to the client specified
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendEvent(ctx context.Context, appId string, event SendEvent) (Response, error) {
+func (a *EventApiService) SendEvent(ctx context.Context, appId string, event data.SendEvent) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue Response
+		localVarReturnValue data.Response
 	)
 
 	// create path and map variables
