@@ -52,7 +52,7 @@ type Configuration struct {
 
 func NewConfiguration(secretKey string) *Configuration {
 	cfg := &Configuration{
-		BasePath:      "https://api.staging.ravenapp.dev",
+		BasePath:      "https://api.ravenapp.dev",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "raven/1.0.0/go",
 		AuthKey:       &APIKey{Key: secretKey, Prefix: "AuthKey"},
