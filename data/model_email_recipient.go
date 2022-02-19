@@ -9,9 +9,7 @@
 
 package data
 
-type SendEvent struct {
-	Event    string         `json:"event"`
-	User     *User          `json:"user"`
-	Data     *Data          `json:"data,omitempty"`
-	Override *EventOverride `json:"override,omitempty"`
+type EmailRecipient struct {
+	Name    string `json:"name,omitempty"`
+	Address string `json:"address,omitempty"`
 }

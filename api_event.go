@@ -17,7 +17,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/ravenappdev/raven-go/raven/data"
+	"github.com/ravenappdev/raven-go/data"
 )
 
 // Linger please

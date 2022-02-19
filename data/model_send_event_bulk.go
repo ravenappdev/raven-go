@@ -10,8 +10,9 @@
 package data
 
 type BatchItem struct {
-	User *User `json:"user"`
-	Data *Data `json:"data,omitempty"`
+	User     *User          `json:"user"`
+	Data     *Data          `json:"data,omitempty"`
+	Override *EventOverride `json:"override,omitempty"`
 }
 
 type SendEventBulk struct {
