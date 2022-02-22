@@ -9,13 +9,9 @@
 
 package data
 
-type BatchItem struct {
+type SendEventRequest struct {
+	Event    string         `json:"event"`
 	User     *User          `json:"user"`
 	Data     *Data          `json:"data,omitempty"`
 	Override *EventOverride `json:"override,omitempty"`
-}
-
-type SendEventBulk struct {
-	Event string      `json:"event"`
-	Batch []BatchItem `json:"batch,omitempty"`
 }
