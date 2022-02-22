@@ -30,13 +30,13 @@ type EventApiService service
 /*
 EventApiService sends the event in bulk to all the clients specified
 This API will send the event in bulk to the clients specified
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId app id of raven app
- * @param event the body for the event that has to be triggered
+ * @param ctx - context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appId - Raven appId
+ * @param event - the body for the event that has to be triggered
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event data.SendEventBulk) (data.Response, error) {
+func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event data.SendEventBulkRequest) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -120,13 +120,13 @@ func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event
 /*
 EventApiService sends the event to the client specified
 This API will send the event to the client specified
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId app id of raven app
- * @param event the body for the event that has to be triggered
+ * @param ctx - context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appId - Raven appId
+ * @param event - the body for the event that has to be triggered
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendEvent(ctx context.Context, appId string, event data.SendEvent) (data.Response, error) {
+func (a *EventApiService) SendEvent(ctx context.Context, appId string, event data.SendEventRequest) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
