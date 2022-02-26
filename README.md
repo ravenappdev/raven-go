@@ -11,7 +11,7 @@ The Raven API is organised in the REST format, our API accepts and return respon
 APIs supported:
 -	Send Event
 -	Send Event Bulk 
--	
+
 ### 2. Authentication
 The Raven API uses api key for the authentication of API request. There are many privileges in the secret key (API Key), do not share it anywhere on public platforms. <br/>
 To authenticate the request, create a NewAPIClient using your apiKey as shown below:
