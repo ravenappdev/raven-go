@@ -50,12 +50,12 @@ type Configuration struct {
 	AuthKey       *APIKey
 }
 
-func NewConfiguration(secretKey string) *Configuration {
+func NewConfiguration(apiKey string) *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.ravenapp.dev",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "raven/1.0.0/go",
-		AuthKey:       &APIKey{Key: secretKey, Prefix: "AuthKey"},
+		AuthKey:       &APIKey{Key: apiKey, Prefix: "AuthKey"},
 	}
 	return cfg
 }

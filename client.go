@@ -33,35 +33,35 @@ var (
 	xmlCheck  = regexp.MustCompile("(?i:(?:application|text)/xml)")
 )
 
-// APIClient manages communication with the Raven API API v1.0.0
-// In most cases there should be only one, shared, APIClient.
-type APIClient struct {
+// In most cases there should be only one, shared, Client.
+type Client struct {
 	cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
 
-	EventApi *EventApiService
+	Events *SendEventService
 }
 
 type service struct {
-	client *APIClient
+	client *Client
 }
+
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
-func NewAPIClient(secretKey string) *APIClient {
+func NewAPIClient(secretKey string) *Client {
 	cfg := NewConfiguration(secretKey)
 	if cfg.HTTPClient == nil {
 		cfg.HTTPClient = http.DefaultClient
 	}
 
-	c := &APIClient{}
+	c := &Client{}
 	c.cfg = cfg
 	c.common.client = c
 
 	// API Services
-	c.EventApi = (*EventApiService)(&c.common)
+	c.Events = (*SendEventService)(&c.common)
 
 	return c
 }
@@ -102,17 +102,17 @@ func contains(haystack []string, needle string) bool {
 }
 
 // callAPI do the request.
-func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
+func (c *Client) callAPI(request *http.Request) (*http.Response, error) {
 	return c.cfg.HTTPClient.Do(request)
 }
 
 // Change base path to allow switching to mocks
-func (c *APIClient) ChangeBasePath(path string) {
+func (c *Client) ChangeBasePath(path string) {
 	c.cfg.BasePath = path
 }
 
 // prepareRequest build the request
-func (c *APIClient) prepareRequest(
+func (c *Client) prepareRequest(
 	ctx context.Context,
 	path string, method string,
 	postBody interface{},
@@ -252,7 +252,7 @@ func (c *APIClient) prepareRequest(
 	return localVarRequest, nil
 }
 
-func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+func (c *Client) decode(v interface{}, b []byte, contentType string) (err error) {
 	if strings.Contains(contentType, "application/xml") {
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err

@@ -25,10 +25,10 @@ var (
 	_ context.Context
 )
 
-type EventApiService service
+type SendEventService service
 
 /*
-EventApiService sends the event in bulk to all the clients specified
+SendEventService sends the event in bulk to all the clients specified
 This API will send the event in bulk to the clients specified
  * @param ctx - context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId - Raven appId
@@ -36,7 +36,7 @@ This API will send the event in bulk to the clients specified
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event data.SendEventBulkRequest) (data.Response, error) {
+func (a *SendEventService) SendBulk(ctx context.Context, appId string, request data.SendEventBulkRequest) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -71,7 +71,7 @@ func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &event
+	localVarPostBody = &request
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, err
@@ -118,7 +118,7 @@ func (a *EventApiService) SendBulkEvent(ctx context.Context, appId string, event
 }
 
 /*
-EventApiService sends the event to the client specified
+SendEventService sends the event to the client specified
 This API will send the event to the client specified
  * @param ctx - context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId - Raven appId
@@ -126,7 +126,7 @@ This API will send the event to the client specified
 
 @return SuccessResponse
 */
-func (a *EventApiService) SendEvent(ctx context.Context, appId string, event data.SendEventRequest) (data.Response, error) {
+func (a *SendEventService) Send(ctx context.Context, appId string, request data.SendEventRequest) (data.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
@@ -161,7 +161,7 @@ func (a *EventApiService) SendEvent(ctx context.Context, appId string, event dat
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	localVarPostBody = &event
+	localVarPostBody = &request
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, err
