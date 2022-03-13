@@ -8,15 +8,17 @@ go get github.com/ravenappdev/raven-go
 
 ### 1. Introduction
 Go SDK helps you send notifications through Raven
+
 APIs supported:
+
 -	Send Event
 -	Send Event Bulk 
 
 ### 3. Usage
-Create a NewAPIClient using your apiKey as shown below:
+Create a NewAPIClient using your secretKey as shown below:
 
 ``` golang
-client := raven.NewAPIClient(apiKey)
+client := raven.NewAPIClient(secretKey)
 ```
 
 Here is an example for sending a notification event using Raven API.
@@ -25,32 +27,29 @@ Here is an example for sending a notification event using Raven API.
 package main
 
 import (
-    "context"
-    "fmt"
+	"context"
 
-    raven "github.com/ravenappdev/raven-go"
-    "github.com/ravenappdev/raven-go/data"
+	raven "github.com/ravenappdev/raven-go"
+	"github.com/ravenappdev/raven-go/data"
 )
+
 func main() {
-    apiKey := "Your api key"
-    
-    client := raven.NewAPIClient(apiKey)
+	secretKey := "<secret_key>"
 
-    EventApis := client.EventApi
+	client := raven.NewAPIClient(secretKey)
 
-    appId := "<your raven app_id>"
+	appId := "<app_id>"
 
-    payload := data.SendEvent{
-        Event : "event_101",
-        Email : "user@mail.com",
-        Mobile : "+911234567890",
-    }
-    
-    resp, err := EventApis.SendEvent(context.Background(), appId, payload)
+	payload := data.SendEvent{
+		Event:  "event_101",
+		Email:  "user@mail.com",
+		Mobile: "+911234567890",
+	}
 
-    if err != nil {
-        fmt.Print("error: ", resp.Error)
-    } else {
-        fmt.Print("success: ", resp.Id)
-    }
+	resp, err := client.Events.SendEvent(context.Background(), appId, payload)
+
+	if err != nil {
+		log.Print("error: ", resp.Error)
+	}
+	
 ```
